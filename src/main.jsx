@@ -6,11 +6,13 @@ import Home from './components/Home/Home.jsx';
 import About from './components/About/About.jsx';
 import Blogs from './components/Blogs/Blogs.jsx';
 import BlogDetails from './components/Blogs/BlogDetails';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/blogs",
@@ -19,8 +21,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/blogs/:blogId",
-        element: <BlogDetails></BlogDetails>,
-        loader: ({params}) => fetch(`https://jsonplaceholder.typicode.com/posts/${params.blogId}`)
+        loader: ({params}) => fetch(`https://jsonplaceholder.typicode.com/posts/${params.blogId}`),
+        element: <BlogDetails></BlogDetails>
       },
       {
         path: "/about",
